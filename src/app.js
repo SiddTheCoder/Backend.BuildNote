@@ -34,7 +34,6 @@ import userRoutes from './routes/user.routes.js'
 import collectionRoutes from './routes/collection.routes.js'
 import todoRoutes from './routes/todo.routes.js'
 import authVerify from './routes/auth.routes.js'
-import express from "express";
 import healthRoutes from "./routes/health.route.js";
 
 
