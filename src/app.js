@@ -10,14 +10,17 @@ const corsOrigin = process.env.CORS_ORIGIN? process.env.CORS_ORIGIN.replace(/\/$
 
 // ✅ CORS middleware
 app.use(cors({
-  origin: corsOrigin,
+  origin: 'https://zazbuild.netlify.app',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 // ✅ Explicitly handle preflight requests
-app.options('*', cors());
+app.options('*', (req, res, next) => {
+  console.log('Preflight request:', req.headers);
+  next();
+});
 
 app.use(express.json({ limit: '20mb' }))
 app.use(express.urlencoded({ extended: true }))
