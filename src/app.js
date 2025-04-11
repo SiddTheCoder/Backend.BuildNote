@@ -8,11 +8,16 @@ const app = express()
 // Get the CORS origin from environment variable and remove trailing slashes
 const corsOrigin = process.env.CORS_ORIGIN? process.env.CORS_ORIGIN.replace(/\/$/, '') : '*';
 
-//middlewares
+// ✅ CORS middleware
 app.use(cors({
-  origin: corsOrigin || 'http://localhost:5173',
-  credentials: true ,
-}))
+  origin: corsOrigin,
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+// ✅ Explicitly handle preflight requests
+app.options('*', cors());
 
 app.use(express.json({ limit: '20mb' }))
 app.use(express.urlencoded({ extended: true }))
