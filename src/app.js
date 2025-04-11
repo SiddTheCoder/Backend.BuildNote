@@ -26,6 +26,12 @@ import userRoutes from './routes/user.routes.js'
 import collectionRoutes from './routes/collection.routes.js'
 import todoRoutes from './routes/todo.routes.js'
 import authVerify from './routes/auth.routes.js'
+import express from "express";
+import healthRoutes from "./routes/health.route.js";
+
+
+
+
 
 //use routes
 app.use('/api/user', userRoutes)
@@ -34,6 +40,7 @@ app.use('/api/t', todoRoutes)
 
 app.use('/api/auth', authVerify)
 
+app.use("/health", healthRoutes); // Will respond to /health/ping
 
 // //secured-routing endpoints for frontend
 // app.get('/api/auth/verify', verifyJWT, (req, res) => {
